@@ -1,0 +1,99 @@
+<!-- <p>board works!</p>
+<form #userForm="ngForm">
+  <div class="mb-3">
+    <label>Select Card Count</label>
+    <div class="form-check">
+      <input
+        type="radio"
+        class="form-check-input"
+        name="six"
+        value="6"
+        ngModel
+      />
+      <label class="form-check-label">Six</label>
+    </div>
+    <div class="form-check">
+      <input
+        type="radio"
+        class="form-check-input"
+        name="twelve"
+        value="12"
+        ngModel
+      />
+      <label class="form-check-label">Twelve</label>
+    </div>
+  </div>
+</form> -->
+<!-- <div class="control-panel">
+
+    <select class="custom-select" name="count" ngModel>
+      <option selected >Select board size</option>
+      <option *ngFor="let count of cardCount">{{count}}</option>
+    </select>
+    <button class="btn-new-game">New Game</button>
+    
+</div> -->
+
+
+
+<nav class="navbar navbar-light  nav-title">
+    <h1>MEMORY GAME</h1>
+  </nav>
+
+  
+  
+  <div *ngIf="!checkIsGameOver()" class="grid" >
+      <!-- for (let i = 0; i < cardArray.length; i++) {
+          const card = document.createElement('img')
+          card.setAttribute('src', 'images/blank.png')
+          card.setAttribute('data-id', i)
+          card.addEventListener('click', flipCard)
+          grid.appendChild(card)
+        } -->
+        
+        <!-- <img src="assets/blank.png" [ngClass]="card.flipped ? 'flipped' : 'card'" *ngFor="let card of cards; index as i" (click)="flipCard(i)"> -->
+        <div [ngClass]="card.flipped ? 'flipped' : 'card'" *ngFor="let card of cards; index as i" (click)="flipCard(i)">
+          <div [ngClass]="card.flipped ? 'front-flipped' : 'front'" *ngIf="card.flipped && !card.matched"  [ngStyle]="{'background-image': 'url(' + card.img + ')'}"></div>
+          <div class="back" *ngIf="!card.flipped" ></div>
+        </div>
+        <div class="score-card">
+          <!-- <span > Moves : {{score}}</span>
+          <span >Misses : {{misses}}</span>
+          <span >Rounds : {{rounds}}</span> -->
+          <div class="score-card-grid">
+          <div class="score-label">Moves</div>
+          <div class="score-value" id="moves">{{score}}</div>
+          </div>
+          <div class="score-card-grid">
+          <div class="score-label">Misses</div>
+          <div class="score-value" id="misses">{{misses}}</div>
+        </div>
+        <div class="score-card-grid">
+          <div class="score-label">Rounds</div>
+          <div class="score-value" id="rounds">{{rounds}}</div>
+        </div>
+          <!-- <app-board #board></app-board> -->
+          <!-- <p [score]="board.score"></p> -->
+            <!-- <div>
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Moves</p>
+            </div>
+              <div>
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Moves</p>
+            </div>
+            <div>
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Moves</p>
+            </div> -->
+  
+            
+        </div>
+        
+  
+  </div>
+  <div *ngIf="checkIsGameOver()">
+    <h2>Congratulations!</h2>
+    <p>You have completed the game successfully.</p>
+    <button (click)="restart()" class="btn btn-lg btn-primary">Restart Game</button>
+  </div>
